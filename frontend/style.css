@@ -1,0 +1,716 @@
+/* ==============================
+   GLOBAL
+================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family:
+        "Segoe UI",
+        "Inter",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-size: 34px;
+    line-height: 1.5;
+
+    background: #f7f8fc;
+    color: #4b5563;
+
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+/* ==============================
+   MAIN CONTAINER
+================================ */
+
+.app-container {
+    display: grid;
+
+    grid-template-columns:
+        minmax(400px, 1fr)
+        minmax(400px, 1fr);
+
+    gap: 12px;
+
+    width: 100%;
+    height: 100vh;
+
+    padding: 14px 20px;
+}
+
+
+/* ==============================
+   PANELS
+================================ */
+
+.panel {
+    background: #ffffff;
+
+    border: 1px solid #e6e9f2;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 2px 8px rgba(50, 60, 100, 0.06);
+
+    min-height: 0;
+}
+
+
+/* ==============================
+   LEFT PANEL
+================================ */
+
+.transcription-panel {
+    padding: 10px 18px 18px;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+
+/* ==============================
+   HEADER
+================================ */
+
+.panel-header h2,
+.summary-header h2 {
+    font-size: 14px;
+
+    font-weight: 700;
+
+    color: #6265ed;
+
+    letter-spacing: 0.1px;
+}
+
+.header-icon {
+    font-size: 15px;
+}
+
+
+/* ==============================
+   CONTROL BUTTONS
+================================ */
+
+.control-row {
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    margin-top: 7px;
+}
+
+.btn {
+    border: 1px solid #dfe3ec;
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 5px 10px;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+.btn:disabled {
+    opacity: 0.45;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+.btn-primary {
+    background: #6868f4;
+
+    border-color: #6868f4;
+
+    color: white;
+}
+
+.btn-danger {
+    color: #ef4444;
+
+    border-color: #ef4444;
+}
+
+.btn-light {
+    color: #7a8495;
+}
+
+.btn-success {
+    color: #16834b;
+
+    border-color: #4db981;
+}
+
+
+/* ==============================
+   STATISTICS
+================================ */
+
+.stats-row {
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 10px;
+}
+
+.stat {
+    padding: 5px 10px;
+
+    border: 1px solid #e3e7ef;
+
+    border-radius: 15px;
+
+    font-size: 9px;
+
+    color: #7a8495;
+
+    background: #fff;
+}
+
+
+/* ==============================
+   TRANSCRIPT
+================================ */
+
+.transcript-box {
+    height: 130px;
+
+    margin-top: 12px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e4e8ee;
+
+    border-radius: 5px;
+
+    padding: 12px;
+
+    overflow-y: auto;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    color: #374151;
+
+    box-shadow:
+        inset 0 1px 4px rgba(0,0,0,0.025);
+}
+
+.transcript-line {
+    margin-bottom: 6px;
+}
+
+.timestamp {
+    color: #8b92a2;
+
+    font-size: 10px;
+
+    margin-right: 6px;
+}
+
+
+/* ==============================
+   STATUS BOX
+================================ */
+
+.info-box {
+    margin-top: 12px;
+
+    min-height: 125px;
+
+    border: 1px solid #e2e8f2;
+
+    background: #f8fafc;
+
+    border-radius: 12px;
+
+    padding: 14px;
+
+    display: flex;
+
+    gap: 7px;
+
+    align-items: flex-start;
+
+    font-size: 11px;
+
+    color: #9aa3b1;
+
+    line-height: 1.5;
+}
+
+.info-box strong {
+    color: #8791a1;
+}
+
+.status-icon {
+    font-size: 12px;
+}
+
+
+/* ==============================
+   PROCESS BUTTON
+================================ */
+
+.process-btn {
+    width: calc(100% - 4px);
+
+    margin: 12px 2px 0;
+
+    height: 28px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    background: #6868f4;
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 2px 5px rgba(104,104,244,0.3);
+
+    transition: 0.2s;
+}
+
+.process-btn:hover {
+    background: #5759e9;
+
+    transform: translateY(-1px);
+}
+
+.process-btn:disabled {
+    opacity: 0.55;
+
+    cursor: wait;
+}
+
+
+/* ==============================
+   RIGHT PANEL
+================================ */
+
+.summary-panel {
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+
+/* ==============================
+   SUMMARY HEADER
+================================ */
+
+.summary-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 10px 10px 7px;
+
+    border-bottom: 1px solid #edf0f5;
+}
+
+.clear-summary {
+    background: white;
+
+    border: 1px solid #dce1ea;
+
+    color: #8a94a5;
+
+    border-radius: 3px;
+
+    padding: 5px 8px;
+
+    font-size: 10px;
+
+    cursor: pointer;
+}
+
+
+/* ==============================
+   SCROLLABLE CONTENT
+================================ */
+
+.summary-content {
+    overflow-y: auto;
+
+    padding: 0 8px 16px 10px;
+
+    flex: 1;
+}
+
+
+/* Custom scrollbar */
+
+.summary-content::-webkit-scrollbar,
+.transcript-box::-webkit-scrollbar {
+    width: 5px;
+}
+
+.summary-content::-webkit-scrollbar-thumb,
+.transcript-box::-webkit-scrollbar-thumb {
+    background: #cbd2df;
+
+    border-radius: 10px;
+}
+
+
+/* ==============================
+   PATIENT INFO
+================================ */
+
+.patient-section {
+    padding-top: 8px;
+}
+
+.patient-name {
+    font-size: 11px;
+
+    color: #374151;
+
+    margin-bottom: 4px;
+}
+
+.patient-name strong {
+    font-weight: 700;
+}
+
+.patient-meta {
+    font-size: 10px;
+
+    color: #718096;
+}
+
+
+/* ==============================
+   CLINICAL SECTIONS
+================================ */
+
+.clinical-section {
+    padding: 9px 2px;
+
+    border-bottom: 1px solid #e9edf4;
+}
+
+
+/* ==============================
+   SECTION TITLES
+================================ */
+
+.section-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+
+    color: #64748b;
+
+    font-weight: 700;
+
+    margin-bottom: 9px;
+}
+
+.section-title span {
+    font-size: 9px;
+
+    color: #6970ee;
+}
+
+
+/* ==============================
+   SUMMARY TEXT
+================================ */
+
+.summary-textarea {
+    width: 100%;
+
+    height: 72px;
+
+    resize: vertical;
+
+    border: 1px solid #dbe3f2;
+
+    border-radius: 12px;
+
+    background: #f8faff;
+
+    padding: 10px;
+
+    color: #4b5563;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+
+    outline: none;
+}
+
+.summary-textarea::placeholder {
+    color: #aeb8c7;
+}
+
+.summary-textarea:focus {
+    border-color: #8c8ff5;
+
+    box-shadow:
+        0 0 0 2px rgba(104,104,244,0.08);
+}
+
+
+/* ==============================
+   EMPTY STATES
+================================ */
+
+.empty-state {
+    min-height: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    color: #a5adbb;
+
+    font-size: 10px;
+
+    padding: 6px;
+}
+
+
+/* ==============================
+   EXTRACTED DATA
+================================ */
+
+.data-list {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+}
+
+.data-item {
+    padding: 5px 8px;
+
+    border-radius: 6px;
+
+    background: #f2f4ff;
+
+    color: #5d61db;
+
+    font-size: 10px;
+}
+
+
+/* ==============================
+   COPY BUTTON
+================================ */
+
+.copy-btn {
+    width: 100%;
+
+    height: 27px;
+
+    margin-top: 8px;
+
+    background: #6868f4;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 5px;
+
+    font-size: 10px;
+
+    cursor: pointer;
+}
+
+.copy-btn:hover {
+    background: #5759e9;
+}
+
+
+/* ==============================
+   FLOATING CHAT
+================================ */
+
+.floating-button {
+    position: fixed;
+
+    right: 18px;
+
+    bottom: 17px;
+
+    width: 45px;
+
+    height: 45px;
+
+    border-radius: 50%;
+
+    border: 3px solid white;
+
+    background: #696bf4;
+
+    color: white;
+
+    box-shadow:
+        0 3px 10px rgba(70,70,180,0.3);
+
+    cursor: pointer;
+
+    font-size: 10px;
+
+    letter-spacing: -2px;
+}
+
+
+/* ==============================
+   RECORDING STATE
+================================ */
+
+.recording {
+    background: #fff1f2 !important;
+
+    border-color: #fca5a5 !important;
+
+    color: #dc2626 !important;
+}
+
+.recording-dot {
+    display: inline-block;
+
+    width: 7px;
+
+    height: 7px;
+
+    background: #ef4444;
+
+    border-radius: 50%;
+
+    margin-right: 5px;
+
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* ==============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+
+    body {
+        overflow: auto;
+    }
+
+    .app-container {
+        grid-template-columns: 1fr;
+
+        height: auto;
+
+        min-height: 100vh;
+
+        padding: 10px;
+    }
+
+    .panel {
+        min-height: 500px;
+    }
+
+    .summary-panel {
+        max-height: 700px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .app-container {
+        padding: 7px;
+    }
+
+    .control-row {
+        gap: 5px;
+    }
+
+    .btn {
+        font-size: 9px;
+
+        padding: 5px 7px;
+    }
+
+    .transcript-box {
+        height: 150px;
+    }
+
+    .info-box {
+        min-height: 100px;
+    }
+}

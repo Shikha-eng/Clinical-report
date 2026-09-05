@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clinical Scribe</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- ================= LEFT PANEL ================= -->
+    <section class="panel transcription-panel">
+
+        <div class="panel-header">
+            <h2>
+                <span class="header-icon">🎙</span>
+                Live Medical Transcription
+            </h2>
+        </div>
+
+        <!-- Buttons -->
+        <div class="control-row">
+
+            <button id="startBtn" class="btn btn-primary">
+                🎙 Start Mic
+            </button>
+
+            <button id="stopBtn" class="btn btn-danger" disabled>
+                ■ Stop
+            </button>
+
+            <button id="clearBtn" class="btn btn-light">
+                🗑 Clear
+            </button>
+
+            <button id="saveBtn" class="btn btn-success">
+                💾 Save Recording
+            </button>
+
+        </div>
+
+        <!-- Status Counters -->
+        <div class="stats-row">
+
+            <div class="stat">
+                🎤 WORDS:
+                <span id="wordCount">0</span>
+            </div>
+
+            <div class="stat">
+                ⟳ CHUNKS:
+                <span id="chunkCount">0</span>
+            </div>
+
+        </div>
+
+        <!-- Transcript Box -->
+        <div class="transcript-box" id="transcriptBox">
+            <!-- Transcript appears here -->
+        </div>
+
+        <!-- Information Box -->
+        <div class="info-box" id="statusBox">
+
+            <div class="status-icon">
+                ✨
+            </div>
+
+            <div>
+                <strong>Ready</strong> — click Start Mic and speak naturally.
+                VAD will auto-chunk your speech.
+            </div>
+
+        </div>
+
+        <!-- Process Button -->
+        <button id="processBtn" class="process-btn">
+            ⚡ Process Transcript with AI
+        </button>
+
+    </section>
+
+
+    <!-- ================= RIGHT PANEL ================= -->
+    <section class="panel summary-panel">
+
+        <div class="summary-header">
+
+            <h2>
+                🏥 AI Medical Summary
+            </h2>
+
+            <button id="clearSummaryBtn" class="clear-summary">
+                × Clear
+            </button>
+
+        </div>
+
+
+        <div class="summary-content">
+
+            <!-- Patient Information -->
+            <section class="clinical-section patient-section">
+
+                <div class="patient-name">
+                    Patient Name:
+                    <strong id="patientName"></strong>
+                </div>
+
+                <div class="patient-meta">
+                    Age:
+                    <span id="patientAge"></span>
+
+                    &nbsp;
+
+                    Gender:
+                    <span id="patientGender"></span>
+                </div>
+
+            </section>
+
+
+            <!-- Clinical Summary -->
+            <section class="clinical-section">
+
+                <div class="section-title">
+                    <span>▣</span>
+                    CLINICAL SUMMARY
+                </div>
+
+                <textarea
+                    id="clinicalSummary"
+                    class="summary-textarea"
+                    placeholder="AI-generated clinical summary will appear here..."
+                    readonly
+                ></textarea>
+
+            </section>
+
+
+            <!-- Chief Complaints -->
+            <section class="clinical-section">
+
+                <div class="section-title">
+                    <span>♟</span>
+                    CHIEF COMPLAINTS
+                </div>
+
+                <div id="complaints" class="empty-state">
+                    No complaints extracted yet
+                </div>
+
+            </section>
+
+            <!-- History of Present Illness -->
+            <section class="clinical-section">
+
+                 <div class="section-title">
+                      <span>♟</span>
+                      HISTORY OF PRESENT ILLNESS
+                 </div>
+
+                 <div id="hpi" class="empty-state">
+                     No history of present illness extracted
+                 </div>
+
+            </section>
+
+
+            <!-- Symptoms -->
+            <section class="clinical-section">
+
+                <div class="section-title">
+                    <span>♟</span>
+                    SYMPTOMS
+                </div>
+
+                <div id="symptoms" class="empty-state">
+                    No symptoms extracted yet
+                </div>
+
+            </section>
+
+
+            <!-- Clinical Impression -->
+            <section class="clinical-section">
+
+                <div class="section-title">
+                    <span>♧</span>
+                    CLINICAL IMPRESSION
+                </div>
+
+                <div id="diagnosis" class="empty-state">
+                    No diagnosis inferred
+                </div>
+
+            </section>
+
+
+            <!-- Medications -->
+            <section class="clinical-section">
+
+                <div class="section-title">
+                    <span>▣</span>
+                    MEDICATIONS
+                </div>
+
+                <div id="medications" class="empty-state">
+                    No medications extracted yet
+                </div>
+
+            </section>
+
+
+            <!-- Examinations -->
+            <section class="clinical-section">
+
+                <div class="section-title">
+                    <span>♧</span>
+                    EXAMINATIONS & TESTS
+                </div>
+
+                <div id="examinations" class="empty-state">
+                    No examinations extracted yet
+                </div>
+
+            </section>
+
+
+            <!-- Allergies -->
+            <section class="clinical-section">
+
+                <div class="section-title">
+                    <span>⚠</span>
+                    ALLERGIES
+                </div>
+
+                <div id="allergies" class="empty-state">
+                    No allergies extracted yet
+                </div>
+
+            </section>
+
+
+            <!-- Past Medical History -->
+            <section class="clinical-section">
+
+                <div class="section-title">
+                    <span>⟳</span>
+                    PAST MEDICAL HISTORY
+                </div>
+
+                <div id="medicalHistory" class="empty-state">
+                    No past medical history extracted
+                </div>
+
+            </section>
+
+
+            <!-- History / Follow Up -->
+            <section class="clinical-section">
+
+                <div class="section-title">
+                    <span>▣</span>
+                    HISTORY & FOLLOW-UP
+                </div>
+
+                <div id="followUp" class="empty-state">
+                    No follow-up information extracted
+                </div>
+
+            </section>
+
+
+            <!-- Bottom Button -->
+            <button id="copyBtn" class="copy-btn">
+                Copy to Prescription
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- Floating Chat Button -->
+<button class="floating-button" id="chatBtn">
+    ●●
+</button>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
